@@ -21,6 +21,7 @@ jobs:
         run: |
           pip install requests
           pip install dotenv
+          pip install --upgrade certifi
           python update_apart.py
         env:
           SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
