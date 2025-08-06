@@ -1,0 +1,34 @@
+name: Update Apart trade info in README
+
+on: 
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    run-on: ubuntu-latest
+    steps:
+      - name: 리포지토리 체크아웃
+        uses: actions/checkout@v3
+
+      - name: Python 설치
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+
+      - name: 국토부 API 로 Apart trade info 업데이트
+        run: |
+          pip install requests
+          pip install dotenv
+          python update_weather.py
+        env:
+          SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
+
+      - name: 변경 사항 커밋 및 푸시
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "자동 업데이트: 실거래가 정보 갱신" || echo "No changes to commit"
+          git push
