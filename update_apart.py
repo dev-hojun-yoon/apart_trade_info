@@ -18,7 +18,7 @@ URL = f'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTra
 
 def get_data():
     """국토교통부 아파트 실거래가 api 를 통해 강남 압구정동 매일 10개 데이터를 가져옵니다."""
-    response = requests.get(URL)
+    response = requests.get(URL, verify=False)
     print(response)
     response.encoding = 'utf-8'
     if response.status_code != 200:
