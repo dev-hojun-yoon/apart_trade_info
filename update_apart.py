@@ -6,10 +6,12 @@ from datetime import datetime
 from dotenv import load_dotenv
 from requests.adapters import HTTPAdapter
 
-class TLS12Adapter(HTTPAdapter):
-    def init_poolmanager(self, *args, **kwargs):
-        kwargs['ssl_version'] = ssl.PROTOCOL_TLSv1_2
-        return super(TLS12Adapter, self).init_poolmanager(*args, **kwargs)
+# class TLS13Adapter(HTTPAdapter):
+#     def init_poolmanager(self, *args, **kwargs):
+#         kwargs['ssl_version'] = ssl.PROTOCOL_TLSv1_1
+#         return super().init_poolmanager(*args, **kwargs)
+
+
 
 load_dotenv()
 
@@ -23,12 +25,12 @@ README_PATH = "README.md"
 
 URL = f'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade?serviceKey={SERVICE_KEY}&LAWD_CD=11680&DEAL_YMD={CURRENT_YM}&pageNo=1&numOfRows=10'
 
-session = requests.Session()
-session.mount('https://', TLS12Adapter())
+# session = requests.Session()
+# session.mount('https://', TLS13Adapter())
 
 def get_data():
     """국토교통부 아파트 실거래가 api 를 통해 강남 압구정동 매일 10개 데이터를 가져옵니다."""
-    response = session.get(URL)
+    response = requests.get(URL)
     print(response)
     response.encoding = 'utf-8'
     if response.status_code != 200:
