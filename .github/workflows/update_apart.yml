@@ -21,7 +21,7 @@ jobs:
         run: |
           pip install requests
           pip install dotenv
-          python update_weather.py
+          python update_apart.py
         env:
           SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
 
