@@ -2,7 +2,7 @@ name: Update Apart trade info in README
 
 on: 
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/1 * * * *"
   workflow_dispatch:
 
 jobs:
