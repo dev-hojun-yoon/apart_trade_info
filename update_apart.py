@@ -23,7 +23,7 @@ str_month = f'{month:02d}'
 CURRENT_YM = str_year + str_month
 README_PATH = "README.md"
 
-URL = f'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade?serviceKey={SERVICE_KEY}&LAWD_CD=11680&DEAL_YMD={CURRENT_YM}&pageNo=1&numOfRows=10'
+URL = f'http://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade?serviceKey={SERVICE_KEY}&LAWD_CD=11680&DEAL_YMD={CURRENT_YM}&pageNo=1&numOfRows=10'
 
 # session = requests.Session()
 # session.mount('https://', TLS13Adapter())
