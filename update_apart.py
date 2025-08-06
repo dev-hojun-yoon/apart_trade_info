@@ -1,8 +1,15 @@
 import requests
 import os
+import ssl
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from dotenv import load_dotenv
+from requests.adapters import HTTPAdapter
+
+class TLS12Adapter(HTTPAdapter):
+    def init_poolmanager(self, *args, **kwargs):
+        kwargs['ssl_version'] = ssl.PROTOCOL_TLSv1_2
+        return super(TLS12Adapter, self).init_poolmanager(*args, **kwargs)
 
 load_dotenv()
 
